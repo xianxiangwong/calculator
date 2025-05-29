@@ -28,10 +28,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
         rel="stylesheet">
+    <!-- Fugaz One Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
     <link rel="icon" href="images/annalact_logo.png" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
       body { font-family: Arial, sans-serif; margin: 2rem; background: #f9fafb; color: #111827; }
+      .brand { display: flex; align-items: center; justify-content: center; font-size: 2rem; gap: 0.5rem; color: #fff; font-family: 'Fugaz One', cursive; height: 100vh; }
       table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
       th, td { padding: 0.5rem; text-align: center; border: 1px solid #d1d5db; }
       th { background-color: #3b82f6; color: white; }
@@ -49,7 +52,10 @@
     <!-- Sidebar -->
     <div id="sidebar" class="d-flex flex-column flex-shrink-0 text-white">
         <div class="p-3 d-flex align-items-center justify-content-between">
-            <iconify-icon icon="simple-icons:compilerexplorer" width="36" height="36"></iconify-icon>Compute360
+            <div class="brand">
+                <iconify-icon icon="simple-icons:compilerexplorer" width="36" height="36"></iconify-icon>
+                <span>COMPUTE360</span>
+            </div>
            
             <button class="btn btn-sm d-block d-lg-none" id="sidebarclose">
                 <iconify-icon icon="mdi:hamburger-menu-back" class="text-white" width="24" height="24"></iconify-icon>
