@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Compute360</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="author" content="TemplatesJungle">
+    <meta name="keywords" content="Admin Dashboard">
+    <meta name="description" content="Compute360 is a list of tools developed by Annalect MY Team">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="images/annalact_logo.png" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 2rem; background: #f9fafb; color: #111827; }
+      table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+      th, td { padding: 0.5rem; text-align: center; border: 1px solid #d1d5db; }
+      th { background-color: #3b82f6; color: white; }
+      input, select { width: 100%; padding: 0.3rem; box-sizing: border-box; margin-bottom: 1rem;}
+      button { padding: 0.5rem 1rem; margin-right: 0.5rem; margin-top: 1rem; }
+      .warning { color: red; font-weight: bold; }
+      .success { color: green; font-weight: bold; }
+      tfoot td { font-weight: bold; background-color: #f3f4f6; }
+      #chart-container { max-width: 600px; margin-top: 2rem; }
+    </style>
+
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar" class="d-flex flex-column flex-shrink-0 text-white">
+        <div class="p-3 d-flex align-items-center justify-content-between">
+            <img src="images/compute360.png" class="img-fluid">
+            <button class="btn btn-sm d-block d-lg-none" id="sidebarclose">
+                <iconify-icon icon="mdi:hamburger-menu-back" class="text-white" width="24" height="24"></iconify-icon>
+            </button>
+        </div>
+
+        <hr class="mt-0 mb-2">
+
+        <ul class="nav flex-column mb-auto px-2">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link sidebar-link py-3">
+                    <iconify-icon icon="material-symbols:speed-outline" width="24" height="24"></iconify-icon>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="scenario_planner.html" class="nav-link sidebar-link py-3 active">
+                    <iconify-icon icon="material-symbols:calculate-outline" width="24" height="24"></iconify-icon>
+                    Scenario Planner <span class="badge bg-secondary">beta</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <input type="checkbox" id="product" name="dropdowns">
+                <label for="product" class="nav-link sidebar-link py-3 ">
+                    <iconify-icon icon="cuida:package-outline" width="24" height="24"></iconify-icon>
+                    Product <span class="badge bg-secondary">pro</span>
+                    <iconify-icon id="downarrow" class="fa fa-angle-down" aria-hidden="true"
+                        icon="material-symbols:arrow-drop-down-rounded" width="24" height="24"></iconify-icon>
+                    <iconify-icon id="uparrow" class="fa fa-angle-down" aria-hidden="true"
+                        icon="material-symbols:arrow-drop-up-rounded" width="24" height="24"></iconify-icon>
+                </label>
+                <ul class="drop">
+                    <li>
+                        <label class="py-2">
+                            <input type="radio" id="productfirstelement" name="menu">
+                            <a href="product/product-list.html" class="text-capitalize"> Product List </a>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="py-2">
+                            <input type="radio" id="productsecondelement" name="menu">
+                            <a href="product/add-product.html" class="text-capitalize"> Add Product </a>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="py-2">
+                            <input type="radio" id="productthirdelement" name="menu">
+                            <a href="product/product-detail.html" class="text-capitalize"> Product Detail </a>
+                        </label>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <input type="checkbox" id="category" name="dropdowns">
+                <label for="category" class="nav-link sidebar-link py-3 ">
+                    <iconify-icon icon="basil:layout-outline" width="24" height="24"></iconify-icon>
+                    Category <span class="badge bg-secondary">pro</span>
+                    <iconify-icon id="downarrow" class="fa fa-angle-down" aria-hidden="true"
+                        icon="material-symbols:arrow-drop-down-rounded" width="24" height="24"></iconify-icon>
+                    <iconify-icon id="uparrow" class="fa fa-angle-down" aria-hidden="true"
+                        icon="material-symbols:arrow-drop-up-rounded" width="24" height="24"></iconify-icon>
+                </label>
+                <ul class="drop">
+                    <li>
+                        <label class="py-2">
+                            <input type="radio" id="categoryfirstelement" name="menu">
+                            <a href="category/category-list.html" class="text-capitalize"> Category list </a>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="py-2">
+                            <input type="radio" id="categorysecondelement" name="menu">
+                            <a href="category/new-category.html" class="text-capitalize"> New category </a>
+                        </label>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <input type="checkbox" id="order" name="dropdowns">
+                <label for="order" class="nav-link sidebar-link py-3 ">
+                    <iconify-icon icon="mdi:cart-outline" width="24" height="24"></iconify-icon>
+                    Order <span class="badge bg-secondary">pro</span>
+                    <iconify-icon id="downarrow" class="fa fa-angle-down" aria-hidden="true"
+                        icon="material-symbols:arrow-drop-down-rounded" width="24" height="24"></iconify-icon>
+                    <iconify-icon id="uparrow" class="fa fa-angle-down" aria-hidden="true"
+                        icon="material-symbols:arrow-drop-up-rounded" width="24" height="24"></iconify-icon>
+                </label>
+                <ul class="drop list">
+                    <li>
+                        <label class="py-2">
+                            <input type="radio" id="orderfirstelement" name="menu">
+                            <a href="order/order-list.html" class="text-capitalize"> Order List </a>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="py-2">
+                            <input type="radio" id="ordersecondelement" name="menu">
+                            <a href="order/order-details.html" class="text-capitalize"> Order Details </a>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="py-2">
+                            <input type="radio" id="orderthirdelement" name="menu">
+                            <a href="order/order-traking.html" class="text-capitalize"> Order Tracking </a>
+                        </label>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <input type="checkbox" id="pages" name="dropdowns">
+                <label for="pages" class="nav-link sidebar-link py-3 ">
+                    <iconify-icon icon="iconoir:multiple-pages-plus" width="24" height="24"></iconify-icon>
+                    Pages <span class="badge bg-secondary">pro</span>
+                    <iconify-icon id="downarrow" class="fa fa-angle-down" aria-hidden="true"
+                        icon="material-symbols:arrow-drop-down-rounded" width="24" height="24"></iconify-icon>
+                    <iconify-icon id="uparrow" class="fa fa-angle-down" aria-hidden="true"
+                        icon="material-symbols:arrow-drop-up-rounded" width="24" height="24"></iconify-icon>
+                </label>
+                <ul class="drop list">
+                    <li>
+                        <label class="py-2">
+                            <input type="radio" id="pagesfirstelement" name="menu">
+                            <a href="pages/login.html" class="text-capitalize"> Login </a>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="py-2">
+                            <input type="radio" id="pagessecondelement" name="menu">
+                            <a href="pages/faqs.html" class="text-capitalize"> FAQs </a>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="py-2">
+                            <input type="radio" id="pagesthirdelement" name="menu">
+                            <a href="pages/review.html" class="text-capitalize"> Review </a>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="py-2">
+                            <input type="radio" id="pagesfourtelement" name="menu">
+                            <a href="pages/page404.html" class="text-capitalize"> Page 404 </a>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="py-2">
+                            <input type="radio" id="pagesfifthelement" name="menu">
+                            <a href="pages/comingsoon.html" class="text-capitalize"> Coming Soon </a>
+                        </label>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="statistics.html" class="nav-link sidebar-link py-3">
+                    <iconify-icon icon="iconoir:stat-up" width="24" height="24"></iconify-icon>
+                    Statistics <span class="badge bg-secondary">pro</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link sidebar-link py-3">
+                    <iconify-icon icon="ix:support" width="24" height="24"></iconify-icon>
+                    Support
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link sidebar-link py-3">
+                    <iconify-icon icon="uil:setting" width="24" height="24"></iconify-icon>
+                    Settings
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="https://templatesjungle.gumroad.com/l/dashlite" target="_blank"
+                    class="nav-link sidebar-link fw-bold fs-5 py-3">
+                    <iconify-icon icon="fluent:premium-20-filled" width="25" height="25"></iconify-icon>
+                    GET PRO
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content">
+        <!-- Topbar -->
+        <nav id="topbar" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="container-fluid p-lg-4">
+                <button class="btn btn-sm p-0" id="sidebarToggle">
+                    <iconify-icon icon="mdi:hamburger-menu-back" width="24" height="24"></iconify-icon>
+                </button>
+
+                <div class="d-flex align-items-center">
+                    <!-- Search -->
+                    <div class="me-3 position-relative">
+                        <iconify-icon icon="material-symbols:search" width="20" height="20"
+                            class="position-absolute top-50 start-0 translate-middle-y ms-2"></iconify-icon>
+                        <input type="text" class="form-control ps-4 shadow-none" placeholder="Search..."
+                            style="width: 120px;">
+                    </div>
+
+                    <!-- Messages Dropdown -->
+                    <div class="dropdown me-3">
+                        <a class="position-relative" href="#" role="button" id="messagesDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <iconify-icon icon="ri:message-2-line" width="24" height="24"></iconify-icon>
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                                5
+                                <span class="visually-hidden">unread messages</span>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="messagesDropdown"
+                            style="width: 320px;">
+                            <li
+                                class="dropdown-header bg-light py-2 px-3 d-flex justify-content-between align-items-center">
+                                <span>Messages</span>
+                                <a href="#" class="small">Mark all as read</a>
+                            </li>
+                            <li class="px-2 py-1">
+                                <a href="#" class="dropdown-item d-flex align-items-start py-2">
+                                    <img src="images/team2.jpg" class="rounded-circle me-2" width="40" height="40">
+                                    <div class="flex-grow-1">
+                                        <div class="d-flex justify-content-between">
+                                            <strong>John Doe</strong>
+                                            <small class="text-muted">2 min ago</small>
+                                        </div>
+                                        <p class="mb-0 text-truncate" style="max-width: 220px;">Hey there! I wanted to
+                                            ask about the project timeline...</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="px-2 py-1">
+                                <a href="#" class="dropdown-item d-flex align-items-start py-2">
+                                    <img src="images/team5.jpg" class="rounded-circle me-2" width="40" height="40">
+                                    <div class="flex-grow-1">
+                                        <div class="d-flex justify-content-between">
+                                            <strong>Sarah Smith</strong>
+                                            <small class="text-muted">1 hour ago</small>
+                                        </div>
+                                        <p class="mb-0 text-truncate" style="max-width: 220px;">The documents you
+                                            requested are ready for review...</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="px-2 py-1">
+                                <a href="#" class="dropdown-item d-flex align-items-start py-2">
+                                    <img src="images/team4.jpg" class="rounded-circle me-2" width="40" height="40">
+                                    <div class="flex-grow-1">
+                                        <div class="d-flex justify-content-between">
+                                            <strong>Team Update</strong>
+                                            <small class="text-muted">3 hours ago</small>
+                                        </div>
+                                        <p class="mb-0 text-truncate" style="max-width: 220px;">Monthly team meeting
+                                            scheduled for Friday at 2pm...</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="dropdown-footer text-center py-2">
+                                <a href="#" class="text-primary">View all messages</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Notifications Dropdown -->
+                    <div class="dropdown me-3">
+                        <a class="position-relative" href="#" role="button" id="notificationsDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <iconify-icon icon="mdi:bell-outline" width="24" height="24"></iconify-icon>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                                8+
+                                <span class="visually-hidden">unread notifications</span>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="notificationsDropdown"
+                            style="width: 320px;">
+                            <li
+                                class="dropdown-header bg-light py-2 px-3 d-flex justify-content-between align-items-center">
+                                <span>Notifications</span>
+                                <a href="#" class="small">Clear all</a>
+                            </li>
+                            <li class="px-2 py-1">
+                                <a href="#" class="dropdown-item d-flex align-items-start py-2">
+                                    <div class="me-2 text-success">
+                                        <iconify-icon icon="mdi:check-circle-outline" width="24"
+                                            height="24"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <p class="mb-0">Your order #12345 has been shipped</p>
+                                        <small class="text-muted">Just now</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="px-2 py-1">
+                                <a href="#" class="dropdown-item d-flex align-items-start py-2">
+                                    <div class="me-2 text-warning">
+                                        <iconify-icon icon="mdi:alert-circle-outline" width="24"
+                                            height="24"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <p class="mb-0">System maintenance scheduled for tonight</p>
+                                        <small class="text-muted">30 minutes ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="px-2 py-1">
+                                <a href="#" class="dropdown-item d-flex align-items-start py-2">
+                                    <div class="me-2 text-info">
+                                        <iconify-icon icon="mdi:account-plus" width="24" height="24"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <p class="mb-0">3 new team members joined</p>
+                                        <small class="text-muted">2 hours ago</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="dropdown-footer text-center py-2">
+                                <a href="#" class="text-primary">View all notifications</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- User Profile Dropdown -->
+                    <div class="dropdown">
+                        <a class="dropdown-toggle d-flex align-items-center text-decoration-none" href="#" role="button"
+                            id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="images/team1.jpg" class="rounded-circle me-2" width="32" height="32">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <iconify-icon icon="mdi:account-outline" class="me-2" width="20"
+                                        height="20"></iconify-icon>
+                                    Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <iconify-icon icon="mdi:cog-outline" class="me-2" width="20"
+                                        height="20"></iconify-icon>
+                                    Settings
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <iconify-icon icon="mdi:email-outline" class="me-2" width="20"
+                                        height="20"></iconify-icon>
+                                    Messages
+                                    <span class="ms-auto badge bg-primary rounded-pill">14</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <iconify-icon icon="mdi:logout-variant" class="me-2" width="20"
+                                        height="20"></iconify-icon>
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="container-fluid my-4 px-lg-4">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="fw-bold m-0">Scenario Planner</h2>
+                <nav class="breadcrumb m-0">
+                    <a class="breadcrumb-item " href="index.html">Home</a>
+                    <a class="breadcrumb-item " href="#">Pages</a>
+                    <span class="breadcrumb-item active " aria-current="page">Scenario Planner</span>
+                </nav>
+            </div>
+
+
+              <label>Total Budget: <input type="number" id="totalBudget" value="1000000"></label>
+              <br><br>
+              <label>Currency:
+                <select id="currency">
+                  <option value="RM">RM</option>
+                  <option value="$">$</option>
+                  <option value="€">€</option>
+                  <option value="£">£</option>
+                  <option value="¥">¥</option>
+                </select>
+              </label>
+              <br><br>
+              <label>Target GMV: <input type="number" id="targetGMV" value="2000000"></label><br><br>
+              <label>Allocation Method:
+                <select id="method">
+                  <option value="proportional">ROAS Proportional</option>
+                  <option value="equally">Allocate Equally</option>
+                  <option value="maximize">Maximize GMV</option>
+                </select>
+              </label>
+              <br><br>
+            
+              <table id="inputTable">
+                <thead>
+                  <tr>
+                    <th>Channel</th>
+                    <th>ROAS</th>
+                    <th>Manual Budget %</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input value="SEM"></td>
+                    <td><input type="number" value="10"></td>
+                    <td><input type="number"></td>
+                    <td><button onclick="deleteRow(this)">🗑️</button></td>
+                  </tr>
+                  <tr>
+                    <td><input value="Online Display"></td>
+                    <td><input type="number" value="15"></td>
+                    <td><input type="number"></td>
+                    <td><button onclick="deleteRow(this)">🗑️</button></td>
+                  </tr>
+                  <tr>
+                    <td><input value="Meta"></td>
+                    <td><input type="number" value="5"></td>
+                    <td><input type="number"></td>
+                    <td><button onclick="deleteRow(this)">🗑️</button></td>
+                  </tr>
+                  <tr>
+                    <td><input value="Google"></td>
+                    <td><input type="number" value="12"></td>
+                    <td><input type="number"></td>
+                    <td><button onclick="deleteRow(this)">🗑️</button></td>
+                  </tr>
+                  <tr>
+                    <td><input value="Tiktok"></td>
+                    <td><input type="number" value="17"></td>
+                    <td><input type="number"></td>
+                    <td><button onclick="deleteRow(this)">🗑️</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            
+              <button onclick="addNewRow()">➕ Add New Row</button>
+              <button onclick="allocateBudget()">✅ Allocate Budget</button>
+              <button onclick="exportCSV()">📤 Export CSV</button>
+              <button onclick="saveData()">💾 Save</button>
+              <button onclick="loadData()">📥 Load</button>
+            
+              <h2>Output</h2>
+              <table id="outputTable">
+                <thead>
+                  <tr>
+                    <th>Channel</th>
+                    <th>Budget %</th>
+                    <th>Budget</th>
+                    <th>ROAS</th>
+                    <th>GMV</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                  <tr>
+                    <td>Total</td>
+                    <td id="totalPercent">0%</td>
+                    <td id="totalBudgetUsed">0</td>
+                    <td></td>
+                    <td id="totalGMV">0</td>
+                  </tr>
+                </tfoot>
+              </table>
+            
+              <div><strong>Total ROAS:</strong> <span id="totalROAS">0</span></div>
+              <div id="gmvWarning"></div>
+              <div id="budgetWarning"></div>
+            
+              <div id="chart-container">
+                <h3>Estimated GMV by Channel</h3>
+                <canvas id="gmvChart"></canvas>
+              </div>
+
+
+
+        <!-- Footer -->
+        <footer class="container-fluid bg-white ">
+            <footer class="row align-items-center py-4">
+                <div class="col-md-6 ">
+                    <p class="m-0">© DashLite - Admin Dashboard </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="m-0" class="">HTML Website Template By :<a href="https://templatesjungle.com/"
+                            class="text-decoration-underline" target="_blank">TemplatesJungle</a></p>
+                </div>
+            </footer>
+        </footer>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script src="https://code.iconify.design/3/3.0.1/iconify.min.js"></script>
+    <script>
+        let chart;
+    
+        function currencySymbol() {
+          return document.getElementById("currency").value;
+        }
+    
+        function addNewRow(channel = "", roas = "", percent = "") {
+          const tbody = document.querySelector('#inputTable tbody');
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td><input value="${channel}"></td>
+            <td><input type="number" value="${roas}"></td>
+            <td><input type="number" value="${percent}"></td>
+            <td><button onclick="deleteRow(this)">🗑️</button></td>
+          `;
+          tbody.appendChild(row);
+        }
+    
+        function deleteRow(btn) {
+          const row = btn.closest('tr');
+          row.remove();
+        }
+    
+        function parseInputRows() {
+          const rows = document.querySelectorAll('#inputTable tbody tr');
+          let manualPercent = 0;
+          const manualChannels = [], autoChannels = [];
+    
+          rows.forEach(row => {
+            const channel = row.cells[0].children[0].value;
+            const roas = parseFloat(row.cells[1].children[0].value);
+            const manual = parseFloat(row.cells[2].children[0].value);
+    
+            if (!channel || isNaN(roas)) return;
+    
+            if (!isNaN(manual)) {
+              manualPercent += manual;
+              manualChannels.push({ channel, roas, percent: manual });
+            } else {
+              autoChannels.push({ channel, roas });
+            }
+          });
+    
+          return { manualChannels, autoChannels, manualPercent };
+        }
+    
+        function allocateBudget() {
+          const method = document.getElementById("method").value;
+          if (method === "maximize") allocateMaximizeGMV();
+          else if (method === "equally") allocateEqually();
+          else allocateProportional();
+        }
+    
+        function allocateMaximizeGMV() {
+          const totalBudget = parseFloat(document.getElementById('totalBudget').value);
+          const targetGMV = parseFloat(document.getElementById('targetGMV').value);
+          const { manualChannels, autoChannels, manualPercent } = parseInputRows();
+          const remainingPercent = 100 - manualPercent;
+    
+          autoChannels.sort((a, b) => b.roas - a.roas);
+          const totalAutoROAS = autoChannels.reduce((sum, c) => sum + c.roas, 0);
+          let allocatedPercent = 0;
+          autoChannels.forEach(channel => {
+            if (allocatedPercent < remainingPercent) {
+              let alloc = Math.min(remainingPercent - allocatedPercent, 100);
+              channel.percent = alloc;
+              allocatedPercent += alloc;
+            } else {
+              channel.percent = 0;
+            }
+          });
+    
+          const allChannels = [...manualChannels, ...autoChannels];
+          allChannels.forEach(c => {
+            c.budget = totalBudget * (c.percent / 100);
+            c.gmv = c.budget * c.roas;
+          });
+    
+          displayOutput(allChannels, totalBudget, targetGMV, manualPercent);
+        }
+    
+        function allocateEqually() {
+          const totalBudget = parseFloat(document.getElementById('totalBudget').value);
+          const targetGMV = parseFloat(document.getElementById('targetGMV').value);
+          const rows = document.querySelectorAll('#inputTable tbody tr');
+    
+          const channels = [];
+          let manualPercent = 0;
+    
+          rows.forEach(row => {
+            const channel = row.cells[0].children[0].value;
+            const roas = parseFloat(row.cells[1].children[0].value);
+            const manual = parseFloat(row.cells[2].children[0].value);
+            if (!channel || isNaN(roas)) return;
+    
+            const ch = { channel, roas };
+            if (!isNaN(manual)) {
+              ch.percent = manual;
+              ch.budget = totalBudget * (manual / 100);
+              ch.gmv = ch.budget * ch.roas;
+              manualPercent += manual;
+            }
+            channels.push(ch);
+          });
+    
+          const autoChannels = channels.filter(c => c.percent === undefined);
+          const remainingPercent = 100 - manualPercent;
+          const equalPercent = remainingPercent / autoChannels.length;
+    
+          autoChannels.forEach(c => {
+            c.percent = equalPercent;
+            c.budget = totalBudget * (c.percent / 100);
+            c.gmv = c.budget * c.roas;
+          });
+    
+          displayOutput(channels, totalBudget, targetGMV, manualPercent);
+        }
+    
+        function allocateProportional() {
+          const totalBudget = parseFloat(document.getElementById('totalBudget').value);
+          const targetGMV = parseFloat(document.getElementById('targetGMV').value);
+          const { manualChannels, autoChannels, manualPercent } = parseInputRows();
+          const availablePercent = 100 - manualPercent;
+          const totalWeight = autoChannels.reduce((sum, c) => sum + c.roas, 0);
+    
+          autoChannels.forEach(c => {
+            c.percent = (c.roas / totalWeight) * availablePercent;
+          });
+    
+          const allChannels = [...manualChannels, ...autoChannels];
+          allChannels.forEach(c => {
+            c.budget = totalBudget * (c.percent / 100);
+            c.gmv = c.budget * c.roas;
+          });
+    
+          displayOutput(allChannels, totalBudget, targetGMV, manualPercent);
+        }
+    
+        function displayOutput(channels, totalBudget, targetGMV, manualPercent) {
+          const tbody = document.querySelector('#outputTable tbody');
+          tbody.innerHTML = '';
+          let totalGMV = 0, usedBudget = 0, totalPercentUsed = 0;
+          const gmvData = [];
+          const curr = currencySymbol();
+    
+          channels.forEach(c => {
+            usedBudget += c.budget;
+            totalGMV += c.gmv;
+            totalPercentUsed += c.percent;
+            gmvData.push({ channel: c.channel, gmv: c.gmv });
+    
+            tbody.innerHTML += `
+              <tr>
+                <td>${c.channel}</td>
+                <td>${c.percent.toFixed(2)}%</td>
+                <td>${curr}${c.budget.toFixed(2)}</td>
+                <td>${c.roas.toFixed(2)}</td>
+                <td>${curr}${c.gmv.toFixed(2)}</td>
+              </tr>
+            `;
+          });
+    
+          const totalROAS = totalGMV / usedBudget;
+          document.getElementById('totalGMV').innerText = `${curr}${totalGMV.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
+          document.getElementById('totalROAS').innerText = totalROAS.toFixed(2);
+          document.getElementById('totalPercent').innerText = `${totalPercentUsed.toFixed(2)}%`;
+          document.getElementById('totalBudgetUsed').innerText = `${curr}${usedBudget.toFixed(2)}`;
+          document.getElementById('gmvWarning').innerHTML =
+            totalGMV >= targetGMV ? `<p class="success">✅ Target GMV met or exceeded.</p>` : `<p class="warning">⚠️ Estimated GMV is below target!</p>`;
+          document.getElementById('budgetWarning').innerHTML =
+            manualPercent > 100 ? `<p class="warning">❌ Manual budget exceeds 100%!</p>` : '';
+    
+          renderChart(gmvData, curr);
+        }
+    
+        function renderChart(data, curr) {
+          const ctx = document.getElementById('gmvChart').getContext('2d');
+          const labels = data.map(d => d.channel);
+          const values = data.map(d => d.gmv);
+          const colors = data.map((_, i) => `hsl(${i * 360 / data.length}, 70%, 60%)`);
+    
+          if (chart) chart.destroy();
+          chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+              labels,
+              datasets: [{
+                label: `Estimated GMV (${curr})`,
+                data: values,
+                backgroundColor: colors
+              }]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                y: { beginAtZero: true }
+              }
+            }
+          });
+        }
+    
+        function saveData() {
+          const rows = document.querySelectorAll('#inputTable tbody tr');
+          const data = Array.from(rows).map(row => ({
+            channel: row.cells[0].children[0].value,
+            roas: row.cells[1].children[0].value,
+            percent: row.cells[2].children[0].value
+          }));
+          const settings = {
+            totalBudget: document.getElementById('totalBudget').value,
+            targetGMV: document.getElementById('targetGMV').value,
+            currency: document.getElementById('currency').value,
+            method: document.getElementById('method').value
+          };
+          localStorage.setItem('budgetData', JSON.stringify({ data, settings }));
+          alert("✅ Data saved.");
+        }
+    
+        function loadData() {
+          const saved = JSON.parse(localStorage.getItem('budgetData'));
+          if (!saved) return alert("⚠️ No saved data found.");
+          document.getElementById('totalBudget').value = saved.settings.totalBudget;
+          document.getElementById('targetGMV').value = saved.settings.targetGMV;
+          document.getElementById('currency').value = saved.settings.currency;
+          document.getElementById('method').value = saved.settings.method;
+    
+          const tbody = document.querySelector('#inputTable tbody');
+          tbody.innerHTML = '';
+          saved.data.forEach(row => addNewRow(row.channel, row.roas, row.percent));
+          alert("✅ Data loaded.");
+        }
+    
+        function exportCSV() {
+          const rows = document.querySelectorAll('#outputTable tr');
+          let csv = [];
+          rows.forEach(row => {
+            let cols = Array.from(row.querySelectorAll('th, td')).map(cell => `"${cell.innerText}"`);
+            csv.push(cols.join(','));
+          });
+          const blob = new Blob([csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
+          const link = document.createElement("a");
+          link.href = URL.createObjectURL(blob);
+          link.download = "budget_allocation.csv";
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
+      </script>
+</body>
+
+</html>
